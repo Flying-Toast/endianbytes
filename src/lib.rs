@@ -7,6 +7,9 @@
 //! To solve that problem, this crate provides two generic types:
 //! - [`EndianBytes`], for converting from byte arrays to primatives
 //! - [`ToBytes`], for converting from primatives to byte arrays
+
+#![no_std]
+
 use core::convert::From;
 use core::mem::size_of;
 
