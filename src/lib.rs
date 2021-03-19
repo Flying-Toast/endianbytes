@@ -44,6 +44,7 @@ enum Endianness {
 ///
 /// ```
 /// # use endianbytes::EndianBytes;
+/// # fn main() {
 /// use std::convert::TryInto;
 ///
 /// struct Parser<'a> {
@@ -62,20 +63,18 @@ enum Endianness {
 ///     }
 /// }
 ///
-/// fn main() {
-///     let bytes = [67, 216, 55, 10, 3, 75, 0, 32, 176, 134];
-///     let mut parser = Parser { data: &bytes, };
+/// let bytes = [67, 216, 55, 10, 3, 75, 0, 32, 176, 134];
+/// let mut parser = Parser { data: &bytes, };
 ///
-///     // parse some primatives:
-///     let parsed1: f32 = parser.parse();
-///     assert_eq!(parsed1, 432.43);
+/// let parsed1: f32 = parser.parse();
+/// assert_eq!(parsed1, 432.43);
 ///
-///     let parsed2: i16 = parser.parse();
-///     assert_eq!(parsed2, 843);
+/// let parsed2: i16 = parser.parse();
+/// assert_eq!(parsed2, 843);
 ///
-///     let parsed3: i32 = parser.parse();
-///     assert_eq!(parsed3, 2142342);
-/// }
+/// let parsed3: i32 = parser.parse();
+/// assert_eq!(parsed3, 2142342);
+/// # }
 /// ```
 pub struct EndianBytes<const N: usize> {
     // NOTE: The reason this is implemented as a struct instead of a tuple enum
@@ -139,6 +138,7 @@ impl<const N: usize> EndianBytes<N> {
 ///
 /// ```
 /// # use endianbytes::ToBytes;
+/// # fn main() {
 /// struct BytePacker {
 ///     data: Vec<u8>,
 /// }
@@ -152,13 +152,12 @@ impl<const N: usize> EndianBytes<N> {
 ///     }
 /// }
 ///
-/// fn main() {
-///     let mut packer = BytePacker { data: Vec::new(), };
-///     // pack() accepts any primative:
-///     packer.pack(12u8);
-///     packer.pack(0.5);
-///     packer.pack(1337i16);
-/// }
+/// let mut packer = BytePacker { data: Vec::new(), };
+/// // pack() accepts any primative:
+/// packer.pack(12u8);
+/// packer.pack(0.5);
+/// packer.pack(1337i16);
+/// # }
 /// ```
 ///
 /// If we didn't have the `ToBytes` trait, the only way we would be able to do
